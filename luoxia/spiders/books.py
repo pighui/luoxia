@@ -16,7 +16,6 @@ class BooksSpider(scrapy.Spider):
         page_urls = response.xpath("//nav[@id='sidr']/ul/li/a/@href").extract()[1:-1:]
         # 提取所有的子分类名称
         titles = response.xpath("//nav[@id='sidr']/ul/li/a/@title").extract()
-        print(titles)
         for i in range(len(titles)):
             yield Request(page_urls[i], callback=self.parse_page, meta={
                 'title': titles[i]
